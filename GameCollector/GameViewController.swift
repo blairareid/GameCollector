@@ -15,6 +15,9 @@ class GameViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet weak var titleTextField: UITextField!
     
    var imagePicker = UIImagePickerController()
+
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +66,15 @@ class GameViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         let game = Game(context: context)
       
         game.title = titleTextField.text
+    //    game.image = UIImageJPEGRepresentation(gameImageview.image!, 0.5) as NSData?
         game.image = UIImagePNGRepresentation(gameImageview.image!) as NSData!  //  NSdata coersion required before PNG is data not NSData
         
-        
+        // Save the data to the context store
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        
+        // Exit this screen and pop the the screen that called us
+        navigationController!.popViewController(animated: true)
         
            }
 }
