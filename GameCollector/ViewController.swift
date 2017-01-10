@@ -28,8 +28,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let context =  (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         do {
-            games = try context.fetch(Game.fetchRequest())
-            tableView.reloadData()
+            games = try context.fetch(Game.fetchRequest())  // data will be loaded from store
+            tableView.reloadData()  // Reload data for table view
         } catch {
             
         }
@@ -42,13 +42,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      
+      // Executed for every row of the tableview
         let cell = UITableViewCell()
         
         let game = games[indexPath.row]
         
         cell.textLabel?.text = game.title
-        cell.imageView?.image = UIImage(data: game.image as! Data)
+        cell.imageView?.image = UIImage(data: game.image as! Data) //Need to covert to image as stored as binary data
         
         return cell
         
