@@ -41,6 +41,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // Function when a row is clicked
+        let game = games[indexPath.row]
+        
+        performSegue(withIdentifier: "gameSegue", sender: game)
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let nextVC = segue.destination as! GameViewController
+        
+        nextVC.game = sender as? Game
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       // Executed for every row of the tableview
         let cell = UITableViewCell()
